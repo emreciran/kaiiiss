@@ -1,0 +1,30 @@
+.portfolio__wrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+.portfoliopage__wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.portfolio__container {
+  width: 100% !important;
+  text-align: center;
+}
+
+.portfolio__name {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.portfolio__title {
+  font-size: var(--h4-font-size);
+}

@@ -1,0 +1,111 @@
+.text-cs {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn,
+.hero__link {
+  font-weight: 700;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.btn {
+  padding-inline: 40px;
+  border-radius: 56px;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  transform: scale(0.3);
+  filter: blur(10px);
+  opacity: 0;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+}
+
+.card {
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-one {
+  padding: 30px 35px;
+  border-radius: 18px;
+}
+
+.card-two {
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.breadcrumb-icon {
+  opacity: 0.75;
+  transition: all 0.2s;
+}
+
+.breadcrumb-icon:hover {
+  opacity: 1;
+  scale: 1.1;
+}
+
+blockquote {
+  background: transparent;
+  border-left: 8px solid #37B7C34d;
+  margin: 1.5em 10px;
+  padding: 1em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  border-radius: 5px;
+  box-shadow: #37B7C32f 0px 5px 15px;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+/* Swiper package style */
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  border: 2px solid #fff;
+  background-color: hsl(217, 26%, 13%);
+  z-index: 1;
+  position: relative;
+  opacity: 1;
+  margin: 0;
+  transition: all 0.3s cubic-bezier(0.3, 0, 0.3, 1);
+}
+
+.swiper-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet:not(:last-child) {
+  margin-right: 20px;
+}
+
+.swiper-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet-active {
+  background-color: #37B7C3b4;
+  width: 13px;
+  height: 13px;
+  top: 2px;
+}
+
+.skills-shadow {
+  box-shadow: #37B7C349 0px 2px 8px 2px;
+}
