@@ -68,7 +68,9 @@ const PortfolioDetailsPage = () => {
       <div className="justify-center items-center mt-10 max-w-4xl mx-auto container">
         <div className=" mt-12">
           <div>
-            <h5 className="portfolio__title mb-5">{project?.title}</h5>
+            <h1 className="portfolio__title mb-5 text-xl font-bold">
+              {project?.title}
+            </h1>
             <p className="portfolio__desc">{project?.description}</p>
             {project?.link !== undefined ? (
               <a href={project?.link} target="_blank" className="inline-block">

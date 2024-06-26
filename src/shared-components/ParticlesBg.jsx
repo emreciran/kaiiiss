@@ -2,16 +2,18 @@ import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
-// Animation particles in the background wih react-tsparticles package
+// Background particles animation using react-tsparticles package
 const ParticlesBg = () => {
+  // Function to initialize particles engine
   const particlesInit = useCallback(async (engine) => {
-    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
+    // Load the full tsparticles bundle to ensure all features are available
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container) => {}, []);
+  // Function called when particles are loaded (currently empty)
+  const particlesLoaded = useCallback(async (container) => {
+    // You can perform additional actions after particles are loaded, if needed
+  }, []);
 
   return (
     <Particles
@@ -19,71 +21,71 @@ const ParticlesBg = () => {
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
-        fpsLimit: 120,
+        fpsLimit: 120, // Limit frames per second for smooth animation
         interactivity: {
           events: {
             onClick: {
-              enable: false,
-              mode: "push",
+              enable: false, // Disable click interaction
+              mode: "push", // Particle push mode on click
             },
             onHover: {
-              enable: true,
-              mode: "repulse",
+              enable: true, // Enable hover interaction
+              mode: "repulse", // Particle repulse mode on hover
             },
-            resize: true,
+            resize: true, // Resize particles when window size changes
           },
           modes: {
             push: {
-              quantity: 4,
+              quantity: 4, // Number of particles pushed on click
             },
             repulse: {
-              distance: 200,
-              duration: 0.4,
+              distance: 200, // Distance of particle repulsion on hover
+              duration: 0.4, // Duration of repulsion animation
             },
           },
         },
         particles: {
           color: {
-            value: "#37B7C3",
+            value: "#37B7C3", // Particle color
           },
           links: {
-            color: "#37B7C3",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
+            color: "#37B7C3", // Link color
+            distance: 150, // Maximum distance for links
+            enable: true, // Enable particle links
+            opacity: 0.5, // Link opacity
+            width: 1, // Link width
           },
           collisions: {
-            enable: true,
+            enable: true, // Enable particle collisions
           },
           move: {
-            directions: "none",
-            enable: true,
+            directions: "none", // Particle movement direction
+            enable: true, // Enable particle movement
             outModes: {
-              default: "bounce",
+              default: "bounce", // Particle out mode (bounce back)
             },
-            random: false,
-            speed: 4,
-            straight: false,
+            random: false, // Disable random movement
+            speed: 4, // Particle movement speed
+            straight: false, // Allow curved particle movement
           },
           number: {
             density: {
-              enable: true,
-              area: 800,
+              enable: true, // Enable particle density
+              area: 800, // Area of particle density
             },
-            value: 30,
+            value: 30, // Number of particles
           },
           opacity: {
-            value: 0.5,
+            value: 0.5, // Particle opacity
           },
           shape: {
-            type: "circle",
+            type: "circle", // Particle shape (circle)
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 1, max: 3 }, // Particle size range
           },
         },
-        detectRetina: true,
+        detectRetina: true, // Detect retina displays for higher resolution
       }}
     />
   );

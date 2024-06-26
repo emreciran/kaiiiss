@@ -1,22 +1,25 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Import motion components from Framer Motion library
 
-import { styles } from "../styles/styles";
-import { staggerContainer } from "../utils/motion";
+import { styles } from "../styles/styles"; // Import styles from styles folder
+import { staggerContainer } from "../utils/motion"; // Import staggerContainer animation utility
 
-// We wrap our sections with SectionWrapper and render our sections after going through various processes.
-const StarWrapper = (Component) =>
+// Higher Order Component (HOC) that wraps a given Component with motion and styling
+const StarWrapper = (
+  Component // StarWrapper function takes a Component as input
+) =>
   function HOC() {
+    // Inner function HOC that returns JSX
     return (
       <motion.section
-        variants={staggerContainer()}
-        // initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+        variants={staggerContainer()} // Set animation variants using staggerContainer utility
+        // initial="hidden" // Commented out initial animation state
+        whileInView="show" // Animation state when component is in view
+        viewport={{ once: true, amount: 0.25 }} // Viewport settings for animation trigger
+        className={`${styles.padding} max-w-7xl mx-auto relative z-0`} // Dynamically apply styles from styles object
       >
-        <Component />
+        <Component /> {/* Render the wrapped Component */}
       </motion.section>
     );
   };
 
-export default StarWrapper;
+export default StarWrapper; // Export StarWrapper as default

@@ -1,33 +1,32 @@
 import {defineType, defineArrayMember} from 'sanity'
 
 /**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
+ * Schema definition for the rich text fields used in the blog studio.
+ * When imported into schemas.js, it can be reused with:
+ * {
  *    name: 'someName',
  *    title: 'Some title',
  *    type: 'blockContent'
- *  }
+ * }
  */
 export default defineType({
-  title: 'Block Content',
-  name: 'blockContent',
-  type: 'array',
+  title: 'Block Content', // Display title in Sanity Studio
+  name: 'blockContent', // Type name
+  type: 'array', // Data type (array)
+
+  // Array of allowed types within 'blockContent'
   of: [
     {
-      type: 'break',
+      type: 'break', // Custom type for line breaks
     },
     {
-      type: 'button',
+      type: 'button', // Custom type for buttons
     },
     defineArrayMember({
-      title: 'Block',
-      type: 'block',
-      // Styles let you set what your user can mark up blocks with. These
-      // correspond with HTML tags, but you can set any title or value
-      // you want and decide how you want to deal with it where you want to
-      // use your content.
+      title: 'Block', // Display title in Sanity Studio
+      type: 'block', // Built-in block type for text blocks
+
+      // Styles available for block content
       styles: [
         {title: 'Normal', value: 'normal'},
         {title: 'H1', value: 'h1'},
@@ -36,41 +35,40 @@ export default defineType({
         {title: 'H4', value: 'h4'},
         {title: 'Quote', value: 'blockquote'},
       ],
+
+      // Lists available for block content
       lists: [{title: 'Bullet', value: 'bullet'}],
-      // Marks let you mark up inline text in the block editor.
+
+      // Marks for inline text in the block editor
       marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting by editors.
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
+            title: 'URL', // Annotation type for links
+            name: 'link', // Name of the annotation
+            type: 'object', // Data type of the annotation
             fields: [
               {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
+                title: 'URL', // Field title
+                name: 'href', // Field name
+                type: 'url', // Data type of the field (URL)
               },
             ],
           },
         ],
       },
     }),
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
+
+    // Additional types allowed within 'blockContent'
     defineArrayMember({
-      type: 'image',
-      options: {hotspot: true},
+      type: 'image', // Built-in type for images
+      options: {hotspot: true}, // Image options (e.g., hotspot)
     }),
     {
-      type: 'youtube',
+      type: 'youtube', // Custom type for YouTube videos
     },
   ],
 })

@@ -3,10 +3,11 @@ import { BiHomeAlt } from "react-icons/bi";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlinePhone } from "react-icons/ai";
 
-// Information displayed when the card on the contact page is turned upside down
+// Component to display contact information based on 'contact' prop
 const ContactInfo = ({ contact }) => {
   return (
     <>
+      {/* Display address if available */}
       {contact?.address !== undefined ? (
         <div className="mt-10">
           <div className="flex gap-2 items-center">
@@ -18,6 +19,8 @@ const ContactInfo = ({ contact }) => {
       ) : (
         ""
       )}
+
+      {/* Display email if available */}
       {contact?.email !== undefined ? (
         <div className="mt-10">
           <div className="flex gap-2 items-center">
@@ -34,6 +37,8 @@ const ContactInfo = ({ contact }) => {
       ) : (
         ""
       )}
+
+      {/* Display phone number if available */}
       {contact?.phone !== undefined ? (
         <div className="mt-10">
           <div className="flex gap-2 items-center">

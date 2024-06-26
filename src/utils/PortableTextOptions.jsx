@@ -4,9 +4,14 @@ import YouTube from "react-youtube";
 import sanityClient from "../../sanity";
 import { BiLinkExternal } from "react-icons/bi";
 
-/* A builder to be able to use images from sanity.io */
+// Initialize image URL builder for Sanity.io images
 const builder = imageUrlBuilder(sanityClient);
 
+/**
+ * Function to build an image URL using Sanity.io image assets.
+ * @param {object} source - The image asset reference.
+ * @returns {string} - The constructed image URL.
+ */
 function urlFor(source) {
   return builder.image(source);
 }
@@ -16,7 +21,10 @@ const opts = {
   width: "100%",
 };
 
-// Barebones lazy-loaded image component
+/**
+ * Simple component to lazily load images.
+ * @param {object} props - Component props.
+ */
 const SampleImageComponent = (props) => {
   return (
     <img
@@ -27,25 +35,28 @@ const SampleImageComponent = (props) => {
         .url()}
       loading="lazy"
       style={{
-        // Display alongside text if image appears inside a block text span
-        display: props.isInline ? "inline-block" : "block",
-
-        // Avoid jumping around with aspect-ratio CSS property
+        display: props.isInline ? "inline-block" : "block", // Display inline if inside block text span
       }}
     />
   );
 };
 
-// Sets the texts coming from sanity.io to apply a certain format and style
-// @portabletext/react package
+/**
+ * Components object defining custom renderers for Portable Text (Rich Text) content.
+ */
 export const components = {
   types: {
+    // Example: Custom renderer for image type
     image: SampleImageComponent,
+
+    // Example: Render YouTube videos
     youtube: (props) => {
       const { url } = props.value;
       const id = getVideoId(url);
       return <YouTube videoId={id.id} opts={opts} />;
     },
+
+    // Example: Render breaks based on style
     break: (props) => {
       const { style } = props.value;
       if (style === "lineBreak") {
@@ -56,8 +67,11 @@ export const components = {
       }
       return null;
     },
+
+    // Example: Render buttons with or without images
     button: (props) => {
       if (props?.value?.buttonImage !== undefined) {
+        // Button with image
         return (
           <a
             href={props?.value?.link}
@@ -72,6 +86,7 @@ export const components = {
           </a>
         );
       } else {
+        // Button without image
         return (
           <a
             href={props?.value?.link}
@@ -84,19 +99,19 @@ export const components = {
           </a>
         );
       }
-
-      return null;
     },
-    // Any other custom types you have in your content
-    // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+
+    // Additional custom types can be defined here
+    // Example: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
   },
+
   marks: {
-    // Ex. 1: custom renderer for the em / italics decorator
+    // Example: Render emphasis (italic) with custom styling
     em: ({ children }) => (
       <em className="text-gray-600 font-semibold">{children}</em>
     ),
 
-    // Ex. 2: rendering a custom `link` annotation
+    // Example: Render links with custom target and rel attributes
     link: ({ value, children }) => {
       const target = (value?.href || "").startsWith("http")
         ? "_blank"
@@ -113,8 +128,9 @@ export const components = {
       );
     },
   },
+
   block: {
-    // Ex. 1: customizing common block types
+    // Example: Custom renderers for common block types
     h1: ({ children }) => <h1 className="text-4xl">{children}</h1>,
     blockquote: ({ children }) => (
       <blockquote className="blockquote">{children}</blockquote>
@@ -122,29 +138,30 @@ export const components = {
     h2: ({ children }) => <h2 className="text-3xl">{children}</h2>,
     h3: ({ children }) => <h3 className="text-2xl">{children}</h3>,
     h4: ({ children }) => <h4 className="text-xl">{children}</h4>,
-    p: ({ children }) => console.log(children),
-    // Ex. 2: rendering custom styles
-    customHeading: ({ children }) => <h2 className="text-lg">{children}</h2>,
+    p: ({ children }) => console.log(children), // Example: Log paragraph content
+    customHeading: ({ children }) => <h2 className="text-lg">{children}</h2>, // Example: Render custom heading style
   },
+
   list: {
-    // Ex. 1: customizing common list types
+    // Example: Custom renderers for common list types
     bullet: ({ children }) => <ul className="mt-xl pl-10">{children}</ul>,
     number: ({ children }) => (
       <ol className="mt-lg pl-10 list-decimal">{children}</ol>
     ),
 
-    // Ex. 2: rendering custom lists
+    // Example: Render custom lists
     checkmarks: ({ children }) => (
       <ol className="m-auto text-lg">{children}</ol>
     ),
   },
+
   listItem: {
-    // Ex. 1: customizing common list types
+    // Example: Custom renderers for common list item types
     bullet: ({ children }) => (
       <li style={{ listStyleType: "disc" }}>{children}</li>
     ),
 
-    // Ex. 2: rendering custom list items
+    // Example: Render custom list items
     checkmarks: ({ children }) => <li>✅ {children}</li>,
   },
 };

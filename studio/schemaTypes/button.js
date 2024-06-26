@@ -1,27 +1,29 @@
-// sanity.io button schema
+// Define a schema type for a button in Sanity Studio
 
 export default {
-  name: 'button',
-  type: 'object',
-  title: 'Button',
+  name: 'button', // Type name in Sanity Studio
+  type: 'object', // Object type for schema definition
+  title: 'Button', // Display title in Sanity Studio
+
+  // Fields within the 'button' object
   fields: [
     {
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name: 'name', // Field name
+      title: 'Name', // Field title in Sanity Studio
+      type: 'string', // Data type (string)
     },
     {
-      name: 'buttonImage',
-      title: 'Button image',
-      type: 'image',
+      name: 'buttonImage', // Field name
+      title: 'Button image', // Field title in Sanity Studio
+      type: 'image', // Data type (image)
       options: {
-        hotspot: true,
+        hotspot: true, // Enable hotspot editing for images
       },
     },
     {
-      name: 'link',
-      title: 'Link',
-      type: 'url',
+      name: 'link', // Field name
+      title: 'Link', // Field title in Sanity Studio
+      type: 'url', // Data type (url)
     },
   ],
 }
