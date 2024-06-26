@@ -38,7 +38,7 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className={`xl:mt-12 overflow-hidden`}>
+    <div className={`xl:mt-12 overflow-hidden min-h-screen`}>
       <Breadcrumb name="Contact" />{" "}
       {/* Display breadcrumb navigation for Contact page */}
       <div className="flex xl:flex-row flex-col-reverse gap-10 mt-10 p-1">

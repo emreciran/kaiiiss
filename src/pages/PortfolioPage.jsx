@@ -26,7 +26,7 @@ const PortfolioPage = () => {
   }, []);
 
   return (
-    <div className="container mx-auto mb-32">
+    <div className="container mx-auto mb-32 min-h-screen">
       <Breadcrumb name="Portfolio" /> {/* Display breadcrumb navigation */}
       <h4 style={{ marginTop: "50px", fontSize: "20px" }}>Works</h4>{" "}
       {/* Heading for portfolio section */}
